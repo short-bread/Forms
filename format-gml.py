@@ -95,7 +95,7 @@ if __name__ == "__main__":
                 res = beautify_file(filepath)
                 if orig != res:
                     print(
-                        f'ERROR: File "{filepath}" is not properly formatted!\n\nPlease run ./format-gml.py to fix formatting of all staged GML files and stage the changes before running commit again.'
+                        f'ERROR: File "{filepath}" is not properly formatted!\n\nPlease run python ./format-gml.py to fix formatting of all staged GML files and stage the changes before running commit again.'
                     )
                     exit(1)
     elif target == "--staged":
