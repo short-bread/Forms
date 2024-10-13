@@ -113,7 +113,7 @@ function FORMS_ContextMenuOption(_textOrProps): FORMS_ContextMenuItem() construc
 		Options ??= [];
 		array_push(Options, _option);
 		return self;
-	};
+	}
 }
 
 /// @func FORMS_ContextMenuProps()
@@ -236,16 +236,16 @@ function FORMS_ContextMenu(_options = [], _props = undefined): FORMS_Container(_
 						_select = _option;
 					}
 
-					if (__submenu != undefined &&
-						__submenuIndex != i)
+					if (__submenu != undefined
+						&& __submenuIndex != i)
 					{
 						__submenu.destroy_later();
 						__submenu = undefined;
 						__submenuIndex = -1;
 					}
 
-					if (__submenu == undefined &&
-						_optionOptions != undefined)
+					if (__submenu == undefined
+						&& _optionOptions != undefined)
 					{
 						var _submenu = new FORMS_ContextMenu(_optionOptions,
 						{
@@ -300,7 +300,7 @@ function FORMS_ContextMenu(_options = [], _props = undefined): FORMS_Container(_
 		ContentWidth = _x + _widthMax + 8;
 		ContentHeight = _y + 8;
 		return self;
-	};
+	}
 
 	static layout = function ()
 	{
@@ -335,18 +335,18 @@ function FORMS_ContextMenu(_options = [], _props = undefined): FORMS_Container(_
 		__realY = clamp(__realY, 0, window_get_height() - __realHeight);
 		Container_layout();
 		return self;
-	};
+	}
 
 	static update = function (_deltaTime)
 	{
 		Container_update(_deltaTime);
-		if (keyboard_check_pressed(vk_escape) ||
-			(!is_mouse_over() && mouse_check_button_pressed(mb_any)))
+		if (keyboard_check_pressed(vk_escape)
+			|| (!is_mouse_over() && mouse_check_button_pressed(mb_any)))
 		{
 			destroy_later();
 		}
 		return self;
-	};
+	}
 
 	static draw = function ()
 	{
@@ -362,7 +362,7 @@ function FORMS_ContextMenu(_options = [], _props = undefined): FORMS_Container(_
 		Container_draw();
 
 		return self;
-	};
+	}
 
 	static destroy = function ()
 	{
@@ -377,5 +377,5 @@ function FORMS_ContextMenu(_options = [], _props = undefined): FORMS_Container(_
 		}
 		Container_destroy();
 		return undefined;
-	};
+	}
 }

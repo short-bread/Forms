@@ -152,7 +152,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 	///
 	/// @return {Struct.FORMS_Dock, Undefined} The first child of the dock or
 	/// `undefined`.
-	static get_first = function () { return __left; };
+	static get_first = function () { return __left; }
 
 	/// @func get_second()
 	///
@@ -161,7 +161,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 	///
 	/// @return {Struct.FORMS_Dock, Undefined} The second child of the dock or
 	/// `undefined`.
-	static get_second = function () { return __right; };
+	static get_second = function () { return __right; }
 
 	/// @func set_tab(_tabs)
 	///
@@ -180,7 +180,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 			__tabs[i++].Parent = self;
 		}
 		return self;
-	};
+	}
 
 	/// @func add_tab(_widget)
 	///
@@ -197,7 +197,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 		array_push(__tabs, _widget);
 		_widget.Parent = self;
 		return self;
-	};
+	}
 
 	/// @private
 	static __split = function (_type)
@@ -211,7 +211,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 
 		__right = new FORMS_Dock();
 		__right.Parent = self;
-	};
+	}
 
 	/// @func split_left()
 	///
@@ -225,7 +225,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 		__left.set_tabs(__tabs);
 		__tabs = [];
 		return self;
-	};
+	}
 
 	/// @func split_right()
 	///
@@ -239,7 +239,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 		__right.set_tabs(__tabs);
 		__tabs = [];
 		return self;
-	};
+	}
 
 	/// @func split_up()
 	///
@@ -253,7 +253,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 		__left.set_tabs(__tabs);
 		__tabs = [];
 		return self;
-	};
+	}
 
 	/// @func split_down()
 	///
@@ -267,7 +267,50 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 		__right.set_tabs(__tabs);
 		__tabs = [];
 		return self;
-	};
+	}
+
+	static find_widget = function (_id)
+	{
+		if (Id == _id)
+		{
+			return self;
+		}
+
+		var _found = __tabContainer.find_widget(_id);
+		if (_found != undefined)
+		{
+			return _found;
+		}
+
+		if (__left != undefined)
+		{
+			_found = __left.find_widget(_id);
+			if (_found != undefined)
+			{
+				return _found;
+			}
+		}
+
+		if (__right != undefined)
+		{
+			_found = __right.find_widget(_id);
+			if (_found != undefined)
+			{
+				return _found;
+			}
+		}
+
+		for (var i = array_length(__tabs) - 1; i >= 0; --i)
+		{
+			_found = __tabs[i].find_widget(_id);
+			if (_found != undefined)
+			{
+				return _found;
+			}
+		}
+
+		return undefined;
+	}
 
 	static layout = function ()
 	{
@@ -388,22 +431,22 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 		}
 
 		return self;
-	};
+	}
 
 	static update = function (_deltaTime)
 	{
 		Widget_update(_deltaTime);
 
 		var _root = forms_get_root();
-		var _mousePos = (SplitType == FORMS_EDockSplit.Horizontal) ?
-			forms_mouse_get_x() : forms_mouse_get_y();
+		var _mousePos = (SplitType == FORMS_EDockSplit.Horizontal)
+			? forms_mouse_get_x() : forms_mouse_get_y();
 
-		__splitterIsHovered = (__left != undefined &&
-			__right != undefined &&
-			is_mouse_over() &&
-			_root.WidgetActive == undefined &&
-			_mousePos > __splitterPos &&
-			_mousePos < __splitterPos + SplitterSize);
+		__splitterIsHovered = (__left != undefined
+			&& __right != undefined
+			&& is_mouse_over()
+			&& _root.WidgetActive == undefined
+			&& _mousePos > __splitterPos
+			&& _mousePos < __splitterPos + SplitterSize);
 
 		var _resize = __resize;
 
@@ -448,15 +491,15 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 		}
 
 		return self;
-	};
+	}
 
 	static draw = function ()
 	{
 		var _root = forms_get_root();
-		var _color = (_root.WidgetActive == self) ? SplitterColorActive :
-			(__splitterIsHovered ? SplitterColorHover : SplitterColor);
-		var _alpha = (_root.WidgetActive == self) ? SplitterAlphaActive :
-			(__splitterIsHovered ? SplitterAlphaHover : SplitterAlpha);
+		var _color = (_root.WidgetActive == self) ? SplitterColorActive
+			: (__splitterIsHovered ? SplitterColorHover : SplitterColor);
+		var _alpha = (_root.WidgetActive == self) ? SplitterAlphaActive
+			: (__splitterIsHovered ? SplitterAlphaHover : SplitterAlpha);
 
 		forms_draw_rectangle(__realX, __realY, __realWidth, __realHeight, BackgroundColor, BackgroundAlpha);
 
@@ -495,7 +538,7 @@ function FORMS_Dock(_props = undefined): FORMS_Widget(_props) constructor
 		}
 
 		return self;
-	};
+	}
 }
 
 /// @func FORMS_DockTabsProps()
@@ -547,10 +590,10 @@ function FORMS_DockTabs(_props = undefined): FORMS_Container(_props) constructor
 				draw_sprite_stretched_ext(
 					FORMS_SprTab, 0,
 					Pen.X, 0,
-					_tabPadding +
-					_iconSpace +
-					string_width(_tab.Name) + ((_tabCount > 1) ? 4 + 16 : 0) +
-					_tabPadding,
+					_tabPadding
+					+ _iconSpace
+					+ string_width(_tab.Name) + ((_tabCount > 1) ? 4 + 16 : 0)
+					+ _tabPadding,
 					__realHeight,
 					0x282828, 1.0
 				);
@@ -588,5 +631,5 @@ function FORMS_DockTabs(_props = undefined): FORMS_Container(_props) constructor
 		Pen.finish();
 		ContentWidth = Pen.get_max_x();
 		return self;
-	};
+	}
 }

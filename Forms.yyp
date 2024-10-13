@@ -26,7 +26,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.8.1.171",
+    "IDEVersion":"2024.800.0.618",
   },
   "name":"Forms",
   "resources":[
@@ -40,6 +40,7 @@
     {"id":{"name":"__forms","path":"scripts/__forms/__forms.yy",},},
     {"id":{"name":"EditContextMenu","path":"scripts/EditContextMenu/EditContextMenu.yy",},},
     {"id":{"name":"FileContextMenu","path":"scripts/FileContextMenu/FileContextMenu.yy",},},
+    {"id":{"name":"FORMS_ApplicationSurface","path":"scripts/FORMS_ApplicationSurface/FORMS_ApplicationSurface.yy",},},
     {"id":{"name":"FORMS_Box","path":"scripts/FORMS_Box/FORMS_Box.yy",},},
     {"id":{"name":"FORMS_Color","path":"scripts/FORMS_Color/FORMS_Color.yy",},},
     {"id":{"name":"FORMS_ColorPicker","path":"scripts/FORMS_ColorPicker/FORMS_ColorPicker.yy",},},
@@ -78,6 +79,7 @@
     {"id":{"name":"FORMS_SprSlider","path":"sprites/FORMS_SprSlider/FORMS_SprSlider.yy",},},
     {"id":{"name":"FORMS_SprTab","path":"sprites/FORMS_SprTab/FORMS_SprTab.yy",},},
     {"id":{"name":"FORMS_SprTabWorkspace","path":"sprites/FORMS_SprTabWorkspace/FORMS_SprTabWorkspace.yy",},},
+    {"id":{"name":"SprSponzaBBMOD","path":"sprites/SprSponzaBBMOD/SprSponzaBBMOD.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",

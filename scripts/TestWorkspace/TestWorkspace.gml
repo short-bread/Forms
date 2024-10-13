@@ -27,4 +27,11 @@ function TestWorkspace(): FORMS_FlexBox() constructor
 		new FORMS_ScrollPane(new TestControlsContainer(), { Name: "Test Scroll Pane" }),
 		new FORMS_ScrollPane(new TestControlsContainer(), { Name: "Test Scroll Pane" }),
 	]);
+
+	_dock.split_left();
+	_dock.SplitSize = 0.25;
+
+	_dock.get_second().set_tabs([
+		new FORMS_ApplicationSurface({ Name: "Viewport", Width: "100%", Height: "100%", Resize: true })
+	]);
 }

@@ -138,20 +138,20 @@ function FORMS_UnitValue(_value = 0, _unit = FORMS_EUnit.Pixel) constructor
 			throw "Invalid number '.'!";
 		}
 
-		if (_unit != "" &&
-			_unit != "px" &&
-			_unit != "%")
+		if (_unit != ""
+			&& _unit != "px"
+			&& _unit != "%")
 		{
 			throw $"Invalid unit '{_unit}'!";
 		}
 
 		Value = _sign * real(_before + _number);
-		Unit = (_unit == "" || _unit == "px") ?
-			FORMS_EUnit.Pixel :
-			FORMS_EUnit.Percent;
+		Unit = (_unit == "" || _unit == "px")
+			? FORMS_EUnit.Pixel
+			: FORMS_EUnit.Percent;
 
 		return self;
-	};
+	}
 
 	/// @func from_props(_props, _name[, _valueDefault[, _unitDefault]])
 	///
@@ -196,19 +196,19 @@ function FORMS_UnitValue(_value = 0, _unit = FORMS_EUnit.Pixel) constructor
 		}
 		else
 		{
-			var _value = _props[$ _name];
+			var _value = _props[$  _name];
 			if (is_string(_value))
 			{
 				from_string(_value);
 			}
 			else
 			{
-				Value = _props[$ _name] ?? _valueDefault;
-				Unit = _props[$ _name + "Unit"] ?? _unitDefault;
+				Value = _props[$  _name] ?? _valueDefault;
+				Unit = _props[$  _name + "Unit"] ?? _unitDefault;
 			}
 		}
 		return self;
-	};
+	}
 
 	/// @func get_absolute(_relativeTo[, _autoSize])
 	///
@@ -235,7 +235,7 @@ function FORMS_UnitValue(_value = 0, _unit = FORMS_EUnit.Pixel) constructor
 			default:
 				forms_assert(false, "Invalid unit!");
 		}
-	};
+	}
 }
 
 /// @func FORMS_WidgetProps()
@@ -302,7 +302,7 @@ function FORMS_WidgetProps() constructor
 function forms_get_prop(_props, _name)
 {
 	gml_pragma("forceinline");
-	return ((_props != undefined) ? _props[$ _name] : undefined);
+	return ((_props != undefined) ? _props[$  _name] : undefined);
 }
 
 /// @macro {Code} Must be used in method [layout](./FORMS_Widget.layout.html)
@@ -411,7 +411,7 @@ function FORMS_Widget(_props = undefined) constructor
 	{
 		gml_pragma("forceinline");
 		return __realX;
-	};
+	}
 
 	/// @func get_y()
 	///
@@ -423,7 +423,7 @@ function FORMS_Widget(_props = undefined) constructor
 	{
 		gml_pragma("forceinline");
 		return __realY;
-	};
+	}
 
 	/// @func get_width()
 	///
@@ -435,7 +435,7 @@ function FORMS_Widget(_props = undefined) constructor
 	{
 		gml_pragma("forceinline");
 		return __realWidth;
-	};
+	}
 
 	/// @func get_height()
 	///
@@ -447,7 +447,7 @@ function FORMS_Widget(_props = undefined) constructor
 	{
 		gml_pragma("forceinline");
 		return __realHeight;
-	};
+	}
 
 	/// @func has_parent()
 	///
@@ -458,7 +458,16 @@ function FORMS_Widget(_props = undefined) constructor
 	{
 		gml_pragma("forceinline");
 		return (Parent != undefined);
-	};
+	}
+
+	/// @func remove_child(_child)
+	///
+	/// @desc Removes a child from this widget.
+	///
+	/// @param {Struct.FORMS_Widget} _child The child widget to remove.
+	///
+	/// @return {Struct.FORMS_Widget} Returns `self`.
+	static remove_child = function (_child) { return self; }
 
 	/// @func remove_self()
 	///
@@ -470,7 +479,7 @@ function FORMS_Widget(_props = undefined) constructor
 		forms_assert(Parent != undefined, "Widget does not have a parent!");
 		Parent.remove_child(self);
 		return self;
-	};
+	}
 
 	/// @func find_widget(_id)
 	///
@@ -484,7 +493,7 @@ function FORMS_Widget(_props = undefined) constructor
 	{
 		gml_pragma("forceinline");
 		return (Id == _id) ? self : undefined;
-	};
+	}
 
 	/// @func find_parent_type(_type)
 	///
@@ -508,7 +517,7 @@ function FORMS_Widget(_props = undefined) constructor
 			Parent = Parent.Parent;
 		}
 		return undefined;
-	};
+	}
 
 	/// @func find_parent_name(_name)
 	///
@@ -531,7 +540,7 @@ function FORMS_Widget(_props = undefined) constructor
 			Parent = Parent.Parent;
 		}
 		return undefined;
-	};
+	}
 
 	/// @func get_auto_width()
 	///
@@ -540,7 +549,7 @@ function FORMS_Widget(_props = undefined) constructor
 	///
 	/// @return {Real, Undefined} The width or `undefined` if this widget
 	/// does not support "auto" sizes.
-	static get_auto_width = function () { return undefined; };
+	static get_auto_width = function () { return undefined; }
 
 	/// @func get_auto_height()
 	///
@@ -549,7 +558,7 @@ function FORMS_Widget(_props = undefined) constructor
 	///
 	/// @return {Real, Undefined} The height or `undefined` if this widget
 	/// does not support "auto" sizes.
-	static get_auto_height = function () { return undefined; };
+	static get_auto_height = function () { return undefined; }
 
 	/// @func layout()
 	///
@@ -560,7 +569,7 @@ function FORMS_Widget(_props = undefined) constructor
 	{
 		FORMS_LAYOUT_GENERATED;
 		return self;
-	};
+	}
 
 	/// @func is_mouse_over()
 	///
@@ -570,7 +579,7 @@ function FORMS_Widget(_props = undefined) constructor
 	static is_mouse_over = function ()
 	{
 		return forms_get_root().WidgetHovered == self;
-	};
+	}
 
 	/// @func update(_deltaTime)
 	///
@@ -583,7 +592,7 @@ function FORMS_Widget(_props = undefined) constructor
 	static update = function (_deltaTime)
 	{
 		return self;
-	};
+	}
 
 	/// @func draw()
 	///
@@ -593,7 +602,7 @@ function FORMS_Widget(_props = undefined) constructor
 	static draw = function ()
 	{
 		return self;
-	};
+	}
 
 	/// @func destroy_later()
 	///
@@ -608,7 +617,7 @@ function FORMS_Widget(_props = undefined) constructor
 			__toDestroy = true;
 		}
 		return undefined;
-	};
+	}
 
 	/// @func destroy()
 	///
@@ -618,5 +627,5 @@ function FORMS_Widget(_props = undefined) constructor
 	static destroy = function ()
 	{
 		return undefined;
-	};
+	}
 }

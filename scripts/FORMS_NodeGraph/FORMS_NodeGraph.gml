@@ -35,7 +35,7 @@ function FORMS_NodeGraph() constructor
 		array_push(Nodes, _node);
 		_node.Graph = self;
 		return self;
-	};
+	}
 
 	/// @func eval([_args])
 	///
@@ -54,10 +54,10 @@ function FORMS_NodeGraph() constructor
 		for (var i = array_length(Nodes) - 1; i >= 0; --i)
 		{
 			var _node = Nodes[i];
-			_result[$ _node] = _node.eval(_args, _evalId);
+			_result[$  _node] = _node.eval(_args, _evalId);
 		}
 		return _result;
-	};
+	}
 
 	/// @func draw()
 	///
@@ -92,7 +92,7 @@ function FORMS_NodeGraph() constructor
 		}
 
 		return self;
-	};
+	}
 }
 
 /// @func FORMS_Node(_name[, _pinsIn[, _pinsOut]])
@@ -185,7 +185,7 @@ function FORMS_Node(_name, _pinsIn = [], _pinsOut = []) constructor
 		{
 			PinsOut[i].eval(_args, _evalId);
 		}
-	};
+	}
 
 	/// @func eval(_args, _evalId)
 	///
@@ -208,7 +208,7 @@ function FORMS_Node(_name, _pinsIn = [], _pinsOut = []) constructor
 			OnEval(self, _args, _evalId);
 		}
 		return Result;
-	};
+	}
 
 	/// @func draw()
 	///
@@ -218,7 +218,7 @@ function FORMS_Node(_name, _pinsIn = [], _pinsOut = []) constructor
 	static draw = function ()
 	{
 		return self;
-	};
+	}
 }
 
 /// @enum
@@ -348,9 +348,9 @@ function FORMS_Pin(_name, _type, _assetType = undefined) constructor
 	/// @return {Bool} Returns true if the pins are compatible.
 	static is_compatible = function (_pin)
 	{
-		return (Node != _pin.Node &&
-			IsInput != _pin.IsInput);
-	};
+		return (Node != _pin.Node
+			&& IsInput != _pin.IsInput);
+	}
 
 	/// @func is_connected(_pin)
 	///
@@ -369,7 +369,7 @@ function FORMS_Pin(_name, _type, _assetType = undefined) constructor
 			}
 		}
 		return false;
-	};
+	}
 
 	/// @func connect(_pin)
 	///
@@ -391,7 +391,7 @@ function FORMS_Pin(_name, _type, _assetType = undefined) constructor
 			array_push(_pin.Other, self);
 		}
 		return self;
-	};
+	}
 
 	/// @func disconnect(_pin)
 	///
@@ -423,7 +423,7 @@ function FORMS_Pin(_name, _type, _assetType = undefined) constructor
 			}
 		}
 		return self;
-	};
+	}
 
 	/// @func clear_connections()
 	///
@@ -447,7 +447,7 @@ function FORMS_Pin(_name, _type, _assetType = undefined) constructor
 		}
 		Other = [];
 		return self;
-	};
+	}
 
 	/// @private
 	static __eval_others = function (_args, _evalId)
@@ -456,7 +456,7 @@ function FORMS_Pin(_name, _type, _assetType = undefined) constructor
 		{
 			Other[i].Node.eval(_args, _evalId);
 		}
-	};
+	}
 
 	/// @func eval(_args, _evalId)
 	///
@@ -479,7 +479,7 @@ function FORMS_Pin(_name, _type, _assetType = undefined) constructor
 			OnEval(self, _args, _evalId);
 		}
 		return Result;
-	};
+	}
 
 	/// @func draw()
 	///
@@ -489,5 +489,5 @@ function FORMS_Pin(_name, _type, _assetType = undefined) constructor
 	static draw = function ()
 	{
 		return self;
-	};
+	}
 }

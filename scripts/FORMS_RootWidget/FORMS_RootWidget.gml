@@ -124,7 +124,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	/// @return {Struct.FORMS_RootWidget} Returns `self`.
 	static return_result = function (_id, _value)
 	{
-		__results[$ _id] = _value;
+		__results[$  _id] = _value;
 		return self;
 	}
 
@@ -140,7 +140,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	static has_result = function (_id)
 	{
 		return variable_struct_exists(__results, _id);
-	};
+	}
 
 	/// @func peek_result(_id)
 	///
@@ -153,8 +153,8 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	/// `undefined` if there isn't one available.
 	static peek_result = function (_id)
 	{
-		return __results[$ _id];
-	};
+		return __results[$  _id];
+	}
 
 	/// @func get_result(_id)
 	///
@@ -167,10 +167,10 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	/// `undefined` if there isn't one available.
 	static get_result = function (_id)
 	{
-		var _result = __results[$ _id];
+		var _result = __results[$  _id];
 		variable_struct_remove(__results, _id);
 		return _result;
-	};
+	}
 
 	static layout = function ()
 	{
@@ -187,7 +187,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 		CompoundWidget_layout();
 
 		return self;
-	};
+	}
 
 	static update = function (_deltaTime)
 	{
@@ -201,7 +201,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 		CompoundWidget_update(_deltaTime);
 		global.__formsRoot = undefined;
 		return self;
-	};
+	}
 
 	static draw = function ()
 	{
@@ -277,7 +277,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 
 		global.__formsRoot = undefined;
 		return self;
-	};
+	}
 
 	/// @func push_mouse_coordinates(_x, _y)
 	///
@@ -293,7 +293,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 		MouseX -= _x;
 		MouseY -= _y;
 		return self;
-	};
+	}
 
 	/// @func set_tooltip(_tooltip)
 	///
@@ -306,7 +306,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	{
 		__tooltip = _tooltip;
 		return self;
-	};
+	}
 
 	/// @func set_cursor(_cursor)
 	///
@@ -319,7 +319,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	{
 		__cursor = _cursor;
 		return self;
-	};
+	}
 
 	/// @func get_cursor()
 	///
@@ -329,7 +329,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	static get_cursor = function ()
 	{
 		return __cursor;
-	};
+	}
 
 	/// @func __check_mouse_status(_button)
 	///
@@ -348,9 +348,9 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 			_status ??= mouse_check_button(_button) ? FORMS_EMouseButton.Held : undefined;
 			_status ??= mouse_check_button_released(_button) ? FORMS_EMouseButton.Released : undefined;
 			_status ??= FORMS_EMouseButton.Off;
-			__mouseButtons[$ _button] = _status;
+			__mouseButtons[$  _button] = _status;
 		}
-		return __mouseButtons[$ _button];
+		return __mouseButtons[$  _button];
 	}
 
 	/// @func check_mouse_pressed(_button)
@@ -370,7 +370,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 			return true;
 		}
 		return false;
-	};
+	}
 
 	/// @func check_mouse(_button)
 	///
@@ -383,7 +383,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	{
 		var _button_status = __check_mouse_status(_button);
 		return (_button_status == FORMS_EMouseButton.Held || _button_status == FORMS_EMouseButton.Pressed);
-	};
+	}
 
 	/// @func check_mouse_released(_button)
 	///
@@ -395,7 +395,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	static check_mouse_released = function (_button)
 	{
 		return __check_mouse_status(_button) == FORMS_EMouseButton.Released;
-	};
+	}
 
 	/// @func mouse_set_button_status(_button)
 	///
@@ -405,8 +405,8 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 	/// @param {Real} _status Value from Enum {@link FORMS_EMouseButton}.
 	static mouse_set_button_status = function (_button, _status)
 	{
-		__mouseButtons[$ _button] = _status;
-	};
+		__mouseButtons[$  _button] = _status;
+	}
 
 	/// @private
 	static __process_destroy_later = function ()
@@ -423,7 +423,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 			}
 		}
 		__widgetsToDestroy = [];
-	};
+	}
 
 	static destroy = function ()
 	{
@@ -432,7 +432,7 @@ function FORMS_RootWidget(_props = undefined, _children = undefined): FORMS_Comp
 		__process_destroy_later();
 		global.__formsRoot = undefined;
 		return undefined;
-	};
+	}
 }
 
 /// @func forms_push_mouse_coordinates(_x, _y)
@@ -585,8 +585,8 @@ function forms_mouse_in_rectangle(_x, _y, _width, _height)
 {
 	var _mouseX = forms_mouse_get_x();
 	var _mouseY = forms_mouse_get_y();
-	return (_mouseX >= _x && _mouseX < _x + _width &&
-		_mouseY >= _y && _mouseY < _y + _height);
+	return (_mouseX >= _x && _mouseX < _x + _width
+		&& _mouseY >= _y && _mouseY < _y + _height);
 }
 
 /// @func forms_set_tooltip(_tooltip)

@@ -61,10 +61,11 @@ function FORMS_MenuBar(_items = [], _props = undefined): FORMS_Container(_props)
 				Disabled: (_item.ContextMenu == undefined),
 			});
 
-			if ((_link == 1 ||
-					(_link == -1 && _menu.__contextMenu != undefined && _menu.__itemCurrent != _itemIndex)
-				) &&
-				_item.ContextMenu != undefined)
+			if ((_link == 1
+					|| (_link == -1 && _menu.__contextMenu != undefined && _menu.__itemCurrent
+						!= _itemIndex)
+				)
+				&& _item.ContextMenu != undefined)
 			{
 				if (_menu.__contextMenu != undefined)
 				{
@@ -89,7 +90,7 @@ function FORMS_MenuBar(_items = [], _props = undefined): FORMS_Container(_props)
 
 		Pen.finish();
 		return self;
-	};
+	}
 
 	static update = function (_deltaTime)
 	{
@@ -100,7 +101,7 @@ function FORMS_MenuBar(_items = [], _props = undefined): FORMS_Container(_props)
 			__itemCurrent = -1;
 		}
 		return self;
-	};
+	}
 }
 
 /// @func FORMS_MenuBarItem(_name[, _contextMenu])

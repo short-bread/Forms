@@ -50,7 +50,7 @@ function FORMS_CompoundWidget(_props = undefined, _children = undefined): FORMS_
 		array_push(Children, _child);
 		_child.Parent = self;
 		return self;
-	};
+	}
 
 	/// @func has_child(_child)
 	///
@@ -64,15 +64,8 @@ function FORMS_CompoundWidget(_props = undefined, _children = undefined): FORMS_
 	{
 		gml_pragma("forceinline");
 		return (_child.Parent == self);
-	};
+	}
 
-	/// @func remove_child(_child)
-	///
-	/// @desc Removes a child from this widget.
-	///
-	/// @param {Struct.FORMS_Widget} _child The child widget to remove.
-	///
-	/// @return {Struct.FORMS_CompoundWidget} Returns `self`.
 	static remove_child = function (_child)
 	{
 		forms_assert(_child.Parent == self, "Widget not a child of this parent!");
@@ -88,7 +81,7 @@ function FORMS_CompoundWidget(_props = undefined, _children = undefined): FORMS_
 			}
 		}
 		return self;
-	};
+	}
 
 	static find_widget = function (_id)
 	{
@@ -108,7 +101,7 @@ function FORMS_CompoundWidget(_props = undefined, _children = undefined): FORMS_
 		}
 
 		return undefined;
-	};
+	}
 
 	static layout = function ()
 	{
@@ -137,7 +130,7 @@ function FORMS_CompoundWidget(_props = undefined, _children = undefined): FORMS_
 		}
 
 		return self;
-	};
+	}
 
 	static update = function (_deltaTime)
 	{
@@ -148,7 +141,7 @@ function FORMS_CompoundWidget(_props = undefined, _children = undefined): FORMS_
 			Children[i].update(_deltaTime);
 		}
 		return self;
-	};
+	}
 
 	static draw = function ()
 	{
@@ -158,7 +151,7 @@ function FORMS_CompoundWidget(_props = undefined, _children = undefined): FORMS_
 			Children[i].draw();
 		}
 		return self;
-	};
+	}
 
 	static destroy = function ()
 	{
@@ -171,5 +164,5 @@ function FORMS_CompoundWidget(_props = undefined, _children = undefined): FORMS_
 		Children = undefined;
 
 		return undefined;
-	};
+	}
 }

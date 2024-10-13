@@ -192,7 +192,7 @@ function FORMS_Pen(_container) constructor
 	static get_column_width = function ()
 	{
 		return __columnWidth;
-	};
+	}
 
 	/// @func get_control_width()
 	///
@@ -210,7 +210,7 @@ function FORMS_Pen(_container) constructor
 			case FORMS_EPenLayout.Column2:
 				return __columnWidth - X + ((__columnCurrent == 0) ? StartX : ColumnX2);
 		}
-	};
+	}
 
 	/// @func get_result()
 	///
@@ -223,7 +223,7 @@ function FORMS_Pen(_container) constructor
 		var _result = __result;
 		__result = undefined;
 		return _result;
-	};
+	}
 
 	/// @private
 	static __consume_result = function (_id)
@@ -234,14 +234,14 @@ function FORMS_Pen(_container) constructor
 			return true;
 		}
 		return false;
-	};
+	}
 
 	/// @private
 	static __assert_started = function ()
 	{
 		gml_pragma("forceinline");
 		forms_assert(__started, "Must call method start first!");
-	};
+	}
 
 	/// @func set_layout(_layout)
 	///
@@ -271,7 +271,7 @@ function FORMS_Pen(_container) constructor
 				break;
 		}
 		return self;
-	};
+	}
 
 	/// @func start([_layout])
 	///
@@ -302,7 +302,7 @@ function FORMS_Pen(_container) constructor
 		Width = Container.__realWidth - X * 2;
 		set_layout(_layout);
 		return self;
-	};
+	}
 
 	/// @func move([_x])
 	///
@@ -320,7 +320,7 @@ function FORMS_Pen(_container) constructor
 		X += _x + SpacingX;
 		MaxX = max(MaxX, X);
 		return self;
-	};
+	}
 
 	/// @func set_x(_x)
 	///
@@ -334,7 +334,7 @@ function FORMS_Pen(_container) constructor
 		X = _x;
 		MaxX = max(MaxX, X);
 		return self;
-	};
+	}
 
 	/// @func get_max_x()
 	///
@@ -349,7 +349,7 @@ function FORMS_Pen(_container) constructor
 	static get_max_x = function ()
 	{
 		return MaxX + PaddingX;
-	};
+	}
 
 	/// @func get_max_y()
 	///
@@ -364,7 +364,7 @@ function FORMS_Pen(_container) constructor
 	static get_max_y = function ()
 	{
 		return MaxY + PaddingY;
-	};
+	}
 
 	/// @private
 	static __move_or_nl = function (_x)
@@ -377,7 +377,7 @@ function FORMS_Pen(_container) constructor
 		{
 			move(_x);
 		}
-	};
+	}
 
 	/// @func next()
 	///
@@ -411,7 +411,7 @@ function FORMS_Pen(_container) constructor
 				break;
 		}
 		return self;
-	};
+	}
 
 	/// @func text(_text[, _props])
 	///
@@ -453,7 +453,7 @@ function FORMS_Pen(_container) constructor
 		draw_text_color(X, Y, _text, _c, _c, _c, _c, _a);
 		__move_or_nl(string_width(_text));
 		return self;
-	};
+	}
 
 	/// @func link(_text[, _props])
 	///
@@ -494,7 +494,7 @@ function FORMS_Pen(_container) constructor
 			return FORMS_EControlAction.MouseOver;
 		}
 		return FORMS_EControlAction.None;
-	};
+	}
 
 	/// @func is_mouse_over(_x, _y, _width, _height[, _id])
 	///
@@ -513,10 +513,10 @@ function FORMS_Pen(_container) constructor
 	static is_mouse_over = function (_x, _y, _width, _height, _id = undefined)
 	{
 		var _root = forms_get_root();
-		return (_root.WidgetHovered == Container &&
-			forms_mouse_in_rectangle(_x, _y, _width, _height) &&
-			(_root.WidgetActive == _id || _root.WidgetActive == undefined));
-	};
+		return (_root.WidgetHovered == Container
+			&& forms_mouse_in_rectangle(_x, _y, _width, _height)
+			&& (_root.WidgetActive == _id || _root.WidgetActive == undefined));
+	}
 
 	/// @func get_absolute_pos(_x, _y)
 	///
@@ -534,7 +534,7 @@ function FORMS_Pen(_container) constructor
 			Container.__realX + _x + _world[12],
 			Container.__realY + _y + _world[13],
 		];
-	};
+	}
 
 	/// @func icon(_icon, _font[, _props])
 	///
@@ -590,7 +590,7 @@ function FORMS_Pen(_container) constructor
 			return FORMS_EControlAction.MouseOver;
 		}
 		return FORMS_EControlAction.None;
-	};
+	}
 
 	/// @func icon_regular(_icon[, _props])
 	///
@@ -608,7 +608,7 @@ function FORMS_Pen(_container) constructor
 	{
 		gml_pragma("forceinline");
 		return icon(_icon, forms_get_prop(_props, "Font") ?? FA_FntRegular12, _props);
-	};
+	}
 
 	/// @func icon_solid(_icon[, _props])
 	///
@@ -625,7 +625,7 @@ function FORMS_Pen(_container) constructor
 	{
 		gml_pragma("forceinline");
 		return icon(_icon, forms_get_prop(_props, "Font") ?? FA_FntSolid12, _props);
-	};
+	}
 
 	/// @func icon_brands(_icon[, _props])
 	///
@@ -642,7 +642,7 @@ function FORMS_Pen(_container) constructor
 	{
 		gml_pragma("forceinline");
 		return icon(_icon, forms_get_prop(_props, "Font") ?? FA_FntBrands12, _props);
-	};
+	}
 
 	/// @func button(_text[, _props])
 	///
@@ -687,7 +687,7 @@ function FORMS_Pen(_container) constructor
 			return FORMS_EControlAction.MouseOver;
 		}
 		return FORMS_EControlAction.None;
-	};
+	}
 
 	/// @func color(_id, _color[, _props])
 	///
@@ -708,8 +708,9 @@ function FORMS_Pen(_container) constructor
 		__assert_started();
 		_id = __make_id(_id);
 		var _width = forms_get_prop(_props, "Width") ?? min(get_control_width(), 50);
+		var _disabled = forms_get_prop(_props, "Disabled") ?? false;
 		var _height = __lineHeight;
-		var _mouseOver = is_mouse_over(X, Y, _width, _height);
+		var _mouseOver = (!_disabled && is_mouse_over(X, Y, _width, _height, _id));
 		draw_sprite_stretched(FORMS_SprColor, 0, X, Y, _width, _height);
 		draw_sprite_stretched_ext(
 			FORMS_SprRound4, 0,
@@ -726,7 +727,7 @@ function FORMS_Pen(_container) constructor
 					var _world = matrix_get(matrix_world);
 					// TODO: Window auto fit content
 					var _colorPickerWidth = 200;
-					var _colorPickerHeight = 360;
+					var _colorPickerHeight = 370;
 					var _colorPickerPos = get_absolute_pos(X, Y + _height);
 					var _colorPicker = new FORMS_ColorPicker(_id, _color,
 					{
@@ -742,7 +743,7 @@ function FORMS_Pen(_container) constructor
 		}
 		__move_or_nl(_width);
 		return __consume_result(_id);
-	};
+	}
 
 	/// @func checkbox(_checked[, _props])
 	///
@@ -790,7 +791,7 @@ function FORMS_Pen(_container) constructor
 			return FORMS_EControlAction.MouseOver;
 		}
 		return FORMS_EControlAction.None;
-	};
+	}
 
 	/// @func radio(_selected[, _props])
 	///
@@ -835,14 +836,14 @@ function FORMS_Pen(_container) constructor
 			return FORMS_EControlAction.MouseOver;
 		}
 		return FORMS_EControlAction.None;
-	};
+	}
 
 	/// @private
 	static __make_id = function (_id)
 	{
 		gml_pragma("forceinline");
 		return Container.Id + "#" + _id;
-	};
+	}
 
 	/// @func slider(_id, _value, _min, _max[, _props])
 	///
@@ -912,7 +913,7 @@ function FORMS_Pen(_container) constructor
 		}
 		__move_or_nl(_width);
 		return __consume_result(_id);
-	};
+	}
 
 	/// @func dropdown(_id, _value, _options[, _props])
 	///
@@ -948,7 +949,7 @@ function FORMS_Pen(_container) constructor
 			var _option = _options[_index];
 			if (is_struct(_option) && _value == _option.Value)
 			{
-				_textOriginal = string(_option[$"Text"] ?? _option.Value);
+				_textOriginal = string(_option[$ "Text"] ?? _option.Value);
 				break;
 			}
 			else if (_value == _option)
@@ -983,8 +984,8 @@ function FORMS_Pen(_container) constructor
 		{
 			if (forms_mouse_check_button_pressed(mb_left))
 			{
-				if (__dropdowns[$ _id] == undefined ||
-					!weak_ref_alive(__dropdowns[$ _id]))
+				if (__dropdowns[$  _id] == undefined
+					|| !weak_ref_alive(__dropdowns[$  _id]))
 				{
 					var _dropdownPos = get_absolute_pos(X, Y + _height);
 					var _dropdown = new FORMS_Dropdown(_id, _options, _index, _width,
@@ -993,19 +994,19 @@ function FORMS_Pen(_container) constructor
 						Y: _dropdownPos[1],
 					});
 					forms_get_root().add_child(_dropdown);
-					__dropdowns[$ _id] = weak_ref_create(_dropdown);
+					__dropdowns[$  _id] = weak_ref_create(_dropdown);
 				}
 				else
 				{
-					__dropdowns[$ _id].ref.destroy_later();
-					__dropdowns[$ _id] = undefined;
+					__dropdowns[$  _id].ref.destroy_later();
+					__dropdowns[$  _id] = undefined;
 				}
 			}
 			forms_set_cursor(cr_handpoint);
 		}
 		__move_or_nl(_width);
 		return __consume_result(_id);
-	};
+	}
 
 	/// @func input(_id, _value[, _props])
 	///
@@ -1040,9 +1041,9 @@ function FORMS_Pen(_container) constructor
 			{
 				if (__inputId != undefined)
 				{
-					forms_return_result(__inputId, is_real(__inputValue) ?
-						(forms_parse_real(__inputString) ?? __inputValue) :
-						__inputString);
+					forms_return_result(__inputId, is_real(__inputValue)
+						? (forms_parse_real(__inputString) ?? __inputValue)
+						: __inputString);
 				}
 				__inputId = _id;
 				__inputValue = _value;
@@ -1095,15 +1096,15 @@ function FORMS_Pen(_container) constructor
 
 			var _inputLength = string_length(__inputString);
 
-			if (_multitype &&
-				keyboard_check(vk_backspace) &&
-				__inputString != "")
+			if (_multitype
+				&& keyboard_check(vk_backspace)
+				&& __inputString != "")
 			{
 				__inputString = string_delete(__inputString, _inputLength, 1);
 				--_inputLength;
 			}
-			else if (_multitype &&
-				keyboard_check(vk_delete))
+			else if (_multitype
+				&& keyboard_check(vk_delete))
 			{
 				__inputString = string_delete(__inputString, _inputLength, 1);
 				--_inputLength;
@@ -1121,8 +1122,8 @@ function FORMS_Pen(_container) constructor
 			draw_text(_x + _padding, _y, _displayString);
 
 			// Draw input beam
-			var _alpha = (keyboard_check(vk_anykey) || mouse_check_button(mb_any)) ?
-				1.0 : dsin(current_time * 0.5) * 0.5 + 0.5;
+			var _alpha = (keyboard_check(vk_anykey) || mouse_check_button(mb_any))
+				? 1.0 : dsin(current_time * 0.5) * 0.5 + 0.5;
 			forms_draw_rectangle(_x + _padding + _stringWidth, _y, 2, __lineHeight, global.formsAccentColor,
 				_alpha);
 		}
@@ -1163,12 +1164,12 @@ function FORMS_Pen(_container) constructor
 
 		__move_or_nl(_width);
 
-		if (__inputId == _id && (keyboard_check_pressed(vk_enter) ||
-				(!_mouseOver && mouse_check_button_pressed(mb_left))))
+		if (__inputId == _id && (keyboard_check_pressed(vk_enter)
+				|| (!_mouseOver && mouse_check_button_pressed(mb_left))))
 		{
-			var _valueNew = is_real(__inputValue) ?
-				(forms_parse_real(__inputString) ?? __inputValue) :
-				__inputString;
+			var _valueNew = is_real(__inputValue)
+				? (forms_parse_real(__inputString) ?? __inputValue)
+				: __inputString;
 			if (__inputValue != _valueNew)
 			{
 				forms_return_result(_id, _valueNew);
@@ -1177,7 +1178,7 @@ function FORMS_Pen(_container) constructor
 		}
 
 		return __consume_result(_id);
-	};
+	}
 
 	/// @func section(_text[, _props])
 	///
@@ -1197,14 +1198,14 @@ function FORMS_Pen(_container) constructor
 		// TODO: Add struct FORMS_PenSectionProps
 		__assert_started();
 		var _id = forms_get_prop(_props, "Id") ?? _text;
-		__sectionExpanded[$ _id] ??= !(forms_get_prop(_props, "Collapsed") ?? false);
+		__sectionExpanded[$  _id] ??= !(forms_get_prop(_props, "Collapsed") ?? false);
 		var _width = Width;
 		var _height = forms_get_prop(_props, "Height") ?? __lineHeight;
 		var _indent = __sectionCurrent * SectionIndent;
 		var _mouseOver = is_mouse_over(StartX, Y, _width, _height);
 		draw_sprite_stretched_ext(FORMS_SprRound4, 0, StartX, Y, _width, _height, 0x3F3F3F, 1.0);
-		fa_draw(FA_FntSolid12, __sectionExpanded[$ _id] ? FA_ESolid.AngleDown : FA_ESolid.AngleRight, StartX +
-			_indent + 4, Y, c_white, 0.5);
+		fa_draw(FA_FntSolid12, __sectionExpanded[$  _id] ? FA_ESolid.AngleDown : FA_ESolid.AngleRight, StartX
+			+ _indent + 4, Y, c_white, 0.5);
 		draw_text(StartX + _indent + SectionIndent, Y, _text);
 		if (_mouseOver)
 		{
@@ -1213,9 +1214,9 @@ function FORMS_Pen(_container) constructor
 		}
 		if (_mouseOver && forms_mouse_check_button_pressed(mb_left))
 		{
-			__sectionExpanded[$ _id] = !__sectionExpanded[$ _id];
+			__sectionExpanded[$  _id] = !__sectionExpanded[$  _id];
 		}
-		if (__sectionExpanded[$ _id])
+		if (__sectionExpanded[$  _id])
 		{
 			ColumnX1 += SectionIndent;
 			nl();
@@ -1224,7 +1225,7 @@ function FORMS_Pen(_container) constructor
 		}
 		nl();
 		return false;
-	};
+	}
 
 	/// @func end_section()
 	///
@@ -1242,7 +1243,7 @@ function FORMS_Pen(_container) constructor
 		--__sectionCurrent;
 		nl(0);
 		return self;
-	};
+	}
 
 	/// @func nl([_count])
 	///
@@ -1271,7 +1272,7 @@ function FORMS_Pen(_container) constructor
 		MaxY = max(MaxY, Y);
 
 		return self;
-	};
+	}
 
 	/// @func finish()
 	///
@@ -1285,5 +1286,5 @@ function FORMS_Pen(_container) constructor
 		__started = false;
 		draw_set_font(__fontBackup);
 		return self;
-	};
+	}
 }
